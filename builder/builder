@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# show only the left hand
+midish -b <<END
+  import "/home/thanthese/Serious-Music-Practice/to-take--to-hold/to-take.mid"
+  ct trk00
+  tdel
+  export "test2.mid"
+END
