@@ -70,16 +70,20 @@ runSettings() {
   fi
 
   if [ $2 -eq 1 ]; then
-    espeak -p $speakingPitch "Measure $1, $hands"
+    echo "Measure $1, $hands"
+    espeak -p $speakingPitch "Measure $1, $hands" > /dev/null 2> /dev/null
   else
-    espeak -p $speakingPitch "Measure $(($1 - $2 + 1)) through $1, $hands"
+    echo "Measure $(($1 - $2 + 1)) through $1, $hands"
+    espeak -p $speakingPitch "Measure $(($1 - $2 + 1)) through $1, $hands" > /dev/null 2> /dev/null
   fi
 
   for t in 50 60 70 80 90 100
   do
-    espeak -p $speakingPitch "tempo $t%"
-    createMidi $1 $2 $3
-    timidity -idl -T $t $output
+    echo
+    echo "tempo $t%"
+    espeak -p $speakingPitch "tempo $t%" > /dev/null 2> /dev/null
+    createMidi $1 $2 $3 > /dev/null 2> /dev/null
+    timidity -idl -T $t $output > /dev/null 2> /dev/null
   done
 }
 
