@@ -78,8 +78,8 @@ runSettings() {
   for t in 50 60 70 80 90 100
   do
     espeak -p $speakingPitch "tempo $t%"
-    #createMidi $1 $2 $3
-    #timidity -idl -T $t $output
+    createMidi $1 $2 $3
+    timidity -idl -T $t $output
   done
 }
 
