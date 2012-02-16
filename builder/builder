@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # user settings
 input="/home/thanthese/Serious-Music-Practice/to-take--to-hold/to-take.mid"
@@ -79,7 +79,13 @@ runSettings() {
   do
     espeak -p $speakingPitch "tempo $t%"
     createMidi $1 $2 $3
-    timidity -idl -T $t $output
+
+    # repeat timidity until user hits 'n'
+    while [[ $key != 'n' ]]; do
+      read -n 1 -t .01 key
+      timidity -T $t $output
+    done
+    key=""
   done
 }
 
