@@ -79,13 +79,7 @@ runSettings() {
   do
     espeak -p $speakingPitch "tempo $t%"
     createMidi $1 $2 $3
-
-    # repeat timidity until user hits 'n'
-    while [[ $key != 'n' ]]; do
-      read -n 1 -t .01 key
-      timidity -T $t $output
-    done
-    key=""
+    timidity -idl -T $t $output
   done
 }
 
