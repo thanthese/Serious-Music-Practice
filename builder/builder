@@ -1,10 +1,6 @@
 #!/bin/bash
 
 # user settings
-#input="/home/thanthese/Serious-Music-Practice/to-take--to-hold/to-take.mid"
-#startingMeasure=1
-#tempo=120
-
 if [ $# -ne 3 ]; then
   echo
   echo "Learn to play a midi song on piano."
