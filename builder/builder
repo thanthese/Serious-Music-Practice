@@ -1,9 +1,108 @@
 #!/bin/sh
 
-# show only the left hand
-midish -b <<END
-  import "/home/thanthese/Serious-Music-Practice/to-take--to-hold/to-take.mid"
-  ct trk00
-  tdel
-  export "test2.mid"
+# user settings
+input="/home/thanthese/Serious-Music-Practice/to-take--to-hold/to-take.mid"
+output="test.mid"
+startingMeasure=1
+tempo=120
+
+
+######################################################################
+
+# consts
+bignum=10000  # a number greater than the number of measures
+LEFT=1
+RIGHT=2
+BOTH=3
+speakingPitch=90
+
+# arg1 last measure to keep, counting starts at 1
+# arg2 number of measures to keep, counting backwards
+# arg3 track to use
+#         1. left only (00)
+#         2. right only (01)
+#         3. both (all)
+createMidi() {
+  local endMeasure=$1
+  local backCount=$2
+  local startMeasure=$endMeasure-$backCount
+  local hand=$3
+
+  local tracks=""
+  if [ $hand -eq $LEFT ]; then
+    tracks="ct trk00; tdel;"
+  fi
+  if [ $hand -eq $RIGHT ]; then
+    tracks="ct trk01; tdel;"
+  fi
+
+rmidish -b <<END
+  import "$input"
+
+  $tracks
+
+  # kill after range
+  g $endMeasure
+  sel $bignum
+  mcut
+
+  # kill before range
+  g 0
+  sel $startMeasure
+  mcut
+
+  t $tempo
+
+  export "$output"
 END
+}
+
+# arg1 measure
+# arg2 backwards count
+# arg3 hand
+runSettings() {
+  local hands="both hands"
+  if [ $3 -eq $LEFT ]; then
+    hands="left hand only"
+  fi
+  if [ $3 -eq $RIGHT ]; then
+    hands="right hand only"
+  fi
+
+  if [ $2 -eq 1 ]; then
+    espeak -p $speakingPitch "Measure $1, $hands"
+  else
+    espeak -p $speakingPitch "Measure $(($1 - $2 + 1)) through $1, $hands"
+  fi
+
+  for t in 50 60 70 80 90 100
+  do
+    espeak -p $speakingPitch "tempo $t%"
+    #createMidi $1 $2 $3
+    #timidity -idl -T $t $output
+  done
+}
+
+main() {
+  local measure=$startingMeasure
+  while [ true ]
+  do
+    runSettings $measure 1 $LEFT
+    runSettings $measure 1 $RIGHT
+    runSettings $measure 1 $BOTH
+
+    if [ $measure -ge 2 ]; then
+    runSettings $measure 2 $LEFT
+    runSettings $measure 2 $RIGHT
+    runSettings $measure 2 $BOTH
+    fi
+
+    if [ $measure -ge 3 ]; then
+    runSettings $measure 3 $BOTH
+    fi
+
+    measure=$(($measure + 1))
+  done
+}
+
+main
