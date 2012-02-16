@@ -1,10 +1,26 @@
 #!/bin/bash
 
 # user settings
-input="/home/thanthese/Serious-Music-Practice/to-take--to-hold/to-take.mid"
-output="test.mid"
-startingMeasure=1
-tempo=120
+#input="/home/thanthese/Serious-Music-Practice/to-take--to-hold/to-take.mid"
+#startingMeasure=1
+#tempo=120
+
+if [ $# -ne 3 ]; then
+  echo
+  echo "Learn to play a midi song on piano."
+  echo
+  echo "Arguments."
+  echo
+  echo "1.  Input file.        Ex: ~/test.mid"
+  echo "2.  Starting measure.  Ex: 1"
+  echo "3.  Original tempo.    Ex: 120"
+  echo
+  exit
+fi
+
+input=$1
+startingMeasure=$2
+tempo=$3
 
 
 ######################################################################
@@ -15,6 +31,7 @@ LEFT=1
 RIGHT=2
 BOTH=3
 speakingPitch=90
+output="out.mid"
 
 # arg1 last measure to keep, counting starts at 1
 # arg2 number of measures to keep, counting backwards
