@@ -1,3 +1,7 @@
+# Deprecated!
+
+* This project is deprecated.  See my MusicTrainer github project instead. *
+
 # Requirements
 
 Basically, Ubuntu.  Plus:
