@@ -1,6 +1,6 @@
 # Deprecated!
 
-*This project is deprecated.  See my MusicTrainer github project instead.*
+*This builder is deprecated.  See my MusicTrainer github project instead.*
 
 # Requirements
 
