@@ -1,3 +1,5 @@
+## Overview
+
 Sometimes I need hear a song before I can play it,
 especially in the rhythms department.
 
@@ -5,6 +7,8 @@ My current process is to input the song,
 or only part of the song,
 into [MuseScore](http://musescore.org/).
 Those transcripts end up living here.
+
+## Details
 
 I do this both
 for existing sheetmusic
