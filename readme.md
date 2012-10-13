@@ -1,6 +1,6 @@
-## Overview
+### Overview
 
-Sometimes I need hear a song before I can play it,
+Sometimes I need to hear a song before I can play it,
 especially in the rhythms department.
 
 My current process is to input the song,
@@ -8,7 +8,7 @@ or only part of the song,
 into [MuseScore](http://musescore.org/).
 Those transcripts end up living here.
 
-## Details
+### Details
 
 I do this both
 for existing sheetmusic
@@ -20,7 +20,7 @@ decent looking sheetmusic
 (normally rendered as PDFs).
 However,
 as hearing the songs is more typically the ultimate goal,
-I don't put an incredible effort into beautiful
+I don't put an incredible effort into creating beautiful
 or totoally complete
 layouts.
 For example,
